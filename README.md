@@ -46,8 +46,49 @@ Filas destacadas: En total han salido 7 filas que cumplen la condición del 90% 
 
 #### Imágenes adjuntando los resultados obtenidos
 
-![image.png](attachment:f1c2054d-d048-4e8c-a87c-6969f1d61eb6.png)
+<img width="525" height="215" alt="image" src="https://github.com/user-attachments/assets/6f17efc4-6399-4db0-b463-9da4cad53239" />
+
+<img width="635" height="467" alt="image" src="https://github.com/user-attachments/assets/f34b2b83-f25d-4821-a87b-efd776e142fa" />
 
 También podemos probar con otra foto para ver que resultados se obtienen. En este caso he cogido el logo de la ULPGC que tiene los bordes verticales de las letras, una linea vertical y un dibujo de infoDOC. Adjunto en la siguiente imagen los resultados
 
+<img width="636" height="137" alt="image" src="https://github.com/user-attachments/assets/886f1861-119d-41e6-983f-9ba8ea57e4ce" />
+
+<img width="628" height="471" alt="image" src="https://github.com/user-attachments/assets/5232651d-d9eb-4f53-b096-e82a70a795d0" />
+
 Como podemos observar los picos son las filas en las que las letras están "posadas" (las filas en las que están las partes superiores e inferiores de las letras)
+
+### 2.2 - Tarea 2
+
+#### ¿Qué teníamos que conseguir?
+
+En el caso de la tarea 2, se plantea un análisis de bordes tanto verticales como horizontales utilizando Canny y Sobel.
+
+El análisis con cada detector de bordes consiste en:
+Calcular el valor máximo de la cuenta por filas y columnas.
+Mostrar las filas y columnas por encima del 0.90*máximo. 
+Visualiza los resultados obtenidos con gráfica y en la imagen utilizada. 
+
+Además de la pregunta: ¿Cómo se comparan los resultados obtenidos a partir de Sobel y Canny?
+
+#### ¿Cómo lo hemos hecho?
+
+Para reducir el ruido presente en la imagen comenzamos aplicando un filtro Gaussiano, lo cual mejora la estabilidad de los detectores de bordes al eliminar pequeñas variaciones de intensidad.
+
+Una vez utilizado el filtro sobre la imagen, aplicamos el operador Sobel en las direcciones horizontal y vertical para obtener los bordes en cada direccion.
+
+Debido a que la salida de Sobel contiene distintos niveles de intensidad, aplicamos un umbral con valor 130. Los píxeles con una intensidad superior a dicho valor se transforman en 255 (blanco) y el resto en 0 (negro). De esta forma obtenemos una imagen mas equivalente a la salida de Canny, lo cual facilitará su comparación.
+
+A continuación ya podemos realizar el análisis por columnas y filas. Para ello utilizamos de nuevo función cv2.reduce() para sumar los valores tanto por columnas (0) como por filas (1).
+
+Como los píxeles de borde tienen valor 255, dividimos posteriormente entre este valor para obtener el número real de píxeles de borde detectados. Además de realizar todos los cálculos pertinentes: máximos por columna/fila, 0.90maximo por columna/fila y sus respectivas posiciones.
+
+Por otro lado, el mismo análisis por columna y fila es repetido utilizando la salida del detector Canny.
+
+Finalmente, utilizamos las funciones plt.vlines() y plt.hlines() para remarcar visualmente las columnas y filas más significativas sobre la imagen del mandril.
+
+#### ¿Qué resultados hemos obtenido?
+
+
+#### Imágenes adjuntando los resultados obtenidos
+
