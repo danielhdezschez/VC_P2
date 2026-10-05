@@ -142,4 +142,4 @@ Finalmente se utiliza este punto para posicionar la imagen del OVNI sobre el ví
 
 #### Imágenes adjuntando los resultados obtenidos
 
-ovni_demo1.gif
+![Video OVNI prueba](./ovni_demo1.gif)
