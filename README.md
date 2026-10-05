@@ -89,6 +89,57 @@ Finalmente, utilizamos las funciones plt.vlines() y plt.hlines() para remarcar v
 
 #### ¿Qué resultados hemos obtenido?
 
+Análisis con Sobel tras umbralizar:
+
+Columna con mas bordes: 104 con un 42% de sus pixeles siendo borde
+Columnas Destacadas: 104, 105, 127, 228 
+
+Fila con mas bordes: 4 y 24 ambas con un 48%
+Filas Destacadas: Se han detectado 18 filas con >= 0.90*max
+
+Análisis con Canny:
+
+Columna con mas bordes: 104 con un 26%?
+Columnas Destacadas: 92, 104, 119
+
+Fila con mas bordes: 24 con un 35%
+Filas Destacadas: 6, 8, 20, 24, 100.
 
 #### Imágenes adjuntando los resultados obtenidos
 
+<img width="592" height="469" alt="image" src="https://github.com/user-attachments/assets/08e0521e-abf0-409e-9fa8-17dc2f0941e6" />
+
+<img width="594" height="468" alt="image" src="https://github.com/user-attachments/assets/7a98183e-e921-4756-ada5-6b16de01f496" />
+
+Tras realizar el análisis de ambas técnicas, se observa que Sobel detecta una mayor cantidad de bordes que Canny. Esto se aprecia tanto en el porcentaje de píxeles detectados como en el número de filas y columnas destacadas, donde Sobel identifica 18 filas por encima del 90 % del máximo frente a únicamente 5 en el caso de Canny.
+
+Como se puede observar Sobel ofrece una detección más abundante pero menos selectiva, mientras que Canny proporciona resultados más limpios y localizados, facilitando la identificación de los contornos más relevantes de la imagen.
+
+<img width="515" height="472" alt="image" src="https://github.com/user-attachments/assets/f8e29c9e-27a2-40c6-becf-ab2a1d01dea9" />
+
+### 2.3 - Tarea 3
+
+#### ¿Qué teníamos que conseguir?
+
+Por último, teníamos que proponer un demostrador reinterpretando la parte de procesamiento de la imagen, en nuestro caso utilizamos el código de ejemplo de diferencia de imágenes como punto inicial para realizar la propuesta. En nuestro caso, vamos a utilizar la diferencia de imágenes y un detector de bordes para realizar un filtro que dibuje encima de la cabeza un OVNI. 
+
+#### ¿Cómo lo hemos hecho?
+
+Para comenzar, se calcula la diferencia absoluta entre el fotograma actual y el anterior utilizando la función cv2.absdiff(). Lo cual tiene como resultado únicamente las zonas que han cambiado entre ambos frames.
+Posteriormente la imagen de diferencias se convierte a escala de grises y se le aplica un filtro Gaussiano para eliminar pequeñas variaciones producidas por ruido o fluctuaciones de iluminación.
+
+Una vez suavizada la imagen, se emplea el operador Sobel en el eje X (En este caso únicamente se utiliza Sobel-X porque el objetivo no es detectar todos los bordes de la imagen, sino localizar las posiciones horizontales donde existe movimiento.) 
+
+Después se aplica un umbral binario para conservar únicamente las respuestas más significativas. Con la imagen ya binarizada se realiza un análisis por columnas similar al desarrollado en tareas anteriores. Para ello se suman los valores de cada columna mediante cv2.reduce(). 
+
+Calculando el número de píxeles por columna se seleccionan aquellas columnas que presentan más de 12 píxeles activos. Estas columnas corresponden a las posiciones donde existe una concentración significativa de bordes y, por tanto, movimiento.
+
+A partir de la primera y última columna detectadas se calcula la anchura completa de la región activa y su punto central.
+
+Finalmente se utiliza este punto para posicionar la imagen del OVNI sobre el vídeo. Para evitar copiar el fondo blanco asociado a la imagen, se genera una máscara que únicamente conserva los píxeles pertenecientes a la nave. De esta forma el OVNI aparece integrado en la escena y sigue automáticamente la posición de las personas u objetos que se desplazan delante de la cámara.
+
+#### ¿Qué resultados hemos obtenido?
+
+#### Imágenes adjuntando los resultados obtenidos
+
+imagenes/ovni.gif
