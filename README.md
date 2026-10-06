@@ -2,7 +2,7 @@
 ### Jaime Cuenca Relinque y Daniel Hernández Sánchez
 #### **Objetivo del informe**
 
-En este documento se presenta la memoria de la práctica VC_P2, centrada en las técnicas esenciales del procesamiento digital de imágenes. A lo largo del trabajo se abordan conceptos clave como la conversión de espacios de color, la manipulación de matrices de píxeles, el análisis de histogramas y la segmentación espacial.
+En este documento se presenta la memoria de la segunda práctica de la asignatura, centrada en las técnicas esenciales del procesamiento digital de imágenes. A lo largo del trabajo se abordan conceptos clave como la conversión de espacios de color, la manipulación de matrices de píxeles, el análisis de histogramas y la segmentación espacial.
 
 El objetivo principal es comparar la eficacia de los detectores de bordes Canny y Sobel mediante el estudio de la densidad de píxeles. Como cierre, se propone un prototipo interactivo en tiempo real que aplica estos principios de visión por computador a un entorno práctico.
 
