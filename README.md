@@ -97,6 +97,8 @@ Columnas Destacadas: 104, 105, 127, 228
 Fila con mas bordes: 4 y 24 ambas con un 48%
 Filas Destacadas: Se han detectado 18 filas con >= 0.90*max
 
+<img width="543" height="485" alt="image" src="https://github.com/user-attachments/assets/c5f5114d-bec5-4cb1-903a-04f8aa584ee3" />
+
 Análisis con Canny:
 
 Columna con mas bordes: 104 con un 26%
@@ -104,6 +106,8 @@ Columnas Destacadas: 92, 104, 119
 
 Fila con mas bordes: 24 con un 35%
 Filas Destacadas: 6, 8, 20, 24, 100.
+
+<img width="527" height="224" alt="image" src="https://github.com/user-attachments/assets/c274b520-6560-4fb6-a6ae-ffaa559b623c" />
 
 #### Imágenes adjuntando los resultados obtenidos
 
@@ -113,7 +117,7 @@ Filas Destacadas: 6, 8, 20, 24, 100.
 
 Tras realizar el análisis de ambas técnicas, se observa que Sobel detecta una mayor cantidad de bordes que Canny. Esto se aprecia tanto en el porcentaje de píxeles detectados como en el número de filas y columnas destacadas, donde Sobel identifica 18 filas por encima del 90 % del máximo frente a únicamente 5 en el caso de Canny.
 
-Como se puede observar Sobel ofrece una detección más abundante pero menos selectiva, mientras que Canny proporciona resultados más limpios y localizados, facilitando la identificación de los contornos más relevantes de la imagen.
+Para entender mejor estos resultados hay que entender mejor como funciona cada detector. Por un lado, Sobel ofrece una detección más abundante, ya que genera respuesta en cualquier zona donde exista un cambio apreciable de luminosidad, de ahí que sea necesario el umbralizado. Por otro lado, Canny proporciona menor cantidad de datos al incluir etapas adicionales que permiten eliminar respuestas redundantes y conservar únicamente los contornos más significativos, obteniendo una detección más limpia y precisa.
 
 <img width="515" height="472" alt="image" src="https://github.com/user-attachments/assets/f8e29c9e-27a2-40c6-becf-ab2a1d01dea9" />
 
@@ -139,6 +143,8 @@ A partir de la primera y última columna detectadas se calcula la anchura comple
 Finalmente se utiliza este punto para posicionar la imagen del OVNI sobre el vídeo. Para evitar copiar el fondo blanco asociado a la imagen, se genera una máscara que únicamente conserva los píxeles pertenecientes a la nave. De esta forma el OVNI aparece integrado en la escena y sigue automáticamente la posición de las personas u objetos que se desplazan delante de la cámara.
 
 #### ¿Qué resultados hemos obtenido?
+
+Como se puede observar en los resultados el OVNI es dibujado encima de la cabeza y sigue el movimiento de la misma. 
 
 #### Imágenes adjuntando los resultados obtenidos
 
